@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DoToDo</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="container">
+	<div id="header">
+		<h1>
+			DoToDo
+		</h1>
+	</div>
+	<div id="navigation">
+
+	</div>
+	<div id="content-container">
+		<div id="content">
+			<h2>
+				<%= yield :title %>
+			</h2>
+			
+			<p id="notice"><%= flash[:notice] %></p>
+			<p id="error"><%= flash[:error] %></p>
+			
+			<%= yield :layout %>
+		</div>
+		
+		<div id="aside">
+		<% if content_for?(:sidebar) %>
+			<%= yield :sidebar %>
+		<% end %>
+		</div>
+	
+		<div id="footer">
+			Copyright � Site name, 20XX Michael Draper
+		</div>
+	</div>
+</div>
+
+
+
+</body>
+</html>
