@@ -22,7 +22,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @task.category_id %>
+  <%= @task.category.label %>
 </p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
