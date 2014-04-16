@@ -3,7 +3,7 @@ DoToDo::Application.routes.draw do
 
   resources :categories
   
-  get 'tasks/:id/complete', :to => 'items#complete', :as => :complete
+  get 'tasks/:id/complete', :to => 'tasks#complete', :as => :complete
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -15,7 +15,7 @@ DoToDo::Application.routes.draw do
     namespace :v1 do
       resources :tasks
       resources :categories
-      get 'tasks/:id/complete', :to => 'items#complete', :as => :api_complete
+      get 'tasks/:id/complete', :to => 'tasks#complete', :as => :api_complete
     end
   end
   

@@ -12,10 +12,10 @@ module Api
         
         duplicate_category = category_params[:ids]
         
-        #get a list of tasks not in the incoming ids   
-        category_all = Task.all
+        #get a list of categories not in the incoming ids   
+        category_all = Category.all
         
-        #return with the tasks filtered by category that are not duplicates
+        #return with the categories filtered by category that are not duplicates
         respond_with category_all.where.not(id: duplicate_category) 
         
       end
@@ -28,7 +28,7 @@ module Api
       private
       
         def category_params
-          params.permit(:format, {ids: []})
+          params.permit(:format, { ids: []})
         end    
       
     end

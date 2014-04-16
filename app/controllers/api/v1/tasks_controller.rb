@@ -11,8 +11,8 @@ module Api
         
         duplicate_tasks = task_params[:ids]
         
-        #get a list of tasks not in the incoming ids   
-        category_tasks = Task.where(:catid == Task.category_id)
+        #get a list of tasks that are part of a category_id  
+        category_tasks = Task.where(category_id: :catid)
         
         #return with the tasks filtered by category that are not duplicates
         respond_with category_tasks.where.not(id: duplicate_tasks) 
@@ -21,7 +21,7 @@ module Api
       
       def complete
         
-        @task = Item.find(params[:id])
+        @task = Task.find(params[:id])
          
         @task.completion_date = Time.zone.now
         if @task.save

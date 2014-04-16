@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @tasks = Task.where(:id => Task.category_id)
+      @tasks = @category.tasks
   end
 
   # GET /categories/new
