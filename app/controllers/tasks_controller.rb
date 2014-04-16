@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :complete, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
@@ -50,6 +50,8 @@ class TasksController < ApplicationController
       end
     end
   end
+  
+  
 
   # DELETE /tasks/1
   # DELETE /tasks/1.json

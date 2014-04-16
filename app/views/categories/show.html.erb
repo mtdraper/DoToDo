@@ -10,5 +10,33 @@
   <%= @category.sync %>
 </p>
 
+<h2>Category Tasks:</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Due date</th>
+      <th>Completion date</th>
+      <th>Label</th>
+      <th>Sync</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.due_date %></td>
+        <td><%= task.completion_date %></td>
+        <td><%= task.label %></td>
+        <td><%= task.sync %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

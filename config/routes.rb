@@ -2,12 +2,29 @@ DoToDo::Application.routes.draw do
   resources :tasks
 
   resources :categories
+  
+  get 'tasks/:id/complete', :to => 'items#complete', :as => :complete
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'categories#index'
+  
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :tasks
+      resources :categories
+      get 'tasks/:id/complete', :to => 'items#complete', :as => :api_complete
+    end
+  end
+  
+  
+  
+  
+  
+  
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
