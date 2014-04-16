@@ -7,15 +7,23 @@ module Api
       
       def index
         
-        #get all tasks from the incoming ids
+        #get all tasks for future filtering
         
+        the_tasks = Task.all
+        
+        #get all tasks from the incoming ids
+              
         duplicate_tasks = task_params[:ids]
         
-        #get a list of tasks that are part of a category_id  
-        category_tasks = Task.where(category_id: :catid)
+        #get the :catid out of the url and in a variable  
+        category_tasks = task_params[:catid]
         
-        #return with the tasks filtered by category that are not duplicates
-        respond_with category_tasks.where.not(id: duplicate_tasks) 
+        #get a list of non-duplicate tasks by filtering id
+        not_duplicate = the_tasks.where.not(id: duplicate_tasks)
+ 
+        #return with the non-duplicates filtered by catid
+        respond_with not_duplicate.where(category_id: category_tasks)
+        
         
       end
       
