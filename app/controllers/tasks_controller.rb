@@ -4,7 +4,11 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    if current_user
+      @tasks = current_user.tasks
+    else
+      @tasks = Task.none
+    end
   end
 
   # GET /tasks/1

@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415235110) do
+ActiveRecord::Schema.define(version: 20140423043735) do
 
   create_table "categories", force: true do |t|
     t.string   "label"
     t.boolean  "sync"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "tasks", force: true do |t|
@@ -26,6 +27,19 @@ ActiveRecord::Schema.define(version: 20140415235110) do
     t.string   "label"
     t.boolean  "sync"
     t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "username"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.string   "single_access_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

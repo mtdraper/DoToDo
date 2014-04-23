@@ -5,7 +5,7 @@
     <tr>
       <th>Label</th>
       <th>Sync</th>
-      <th></th>
+      <th>User</th>
       <th></th>
       <th></th>
     </tr>
@@ -16,6 +16,7 @@
       <tr>
         <td><%= category.label %></td>
         <td><%= category.sync %></td>
+        <td><%= category.user.username %></td>
         <td><%= link_to 'Show', category %></td>
         <td><%= link_to 'Edit', edit_category_path(category) %></td>
         <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -25,5 +26,6 @@
 </table>
 
 <br>
-
+<% if current_user %>
 <%= link_to 'New Category', new_category_path %>
+<% end %>

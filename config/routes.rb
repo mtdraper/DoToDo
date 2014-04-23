@@ -1,9 +1,17 @@
 DoToDo::Application.routes.draw do
+  resources :user_sessions
+
+  resources :users
+
   resources :tasks
 
   resources :categories
   
   get 'tasks/:id/complete', :to => 'tasks#complete', :as => :complete
+  
+  get "login", :to => "user_sessions#new"
+  
+  get "logout", :to => "user_sessions#destroy"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
