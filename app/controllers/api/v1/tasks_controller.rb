@@ -15,14 +15,16 @@ module Api
               
         duplicate_tasks = task_params[:ids]
         
-        #get the :catid out of the url and in a variable  
-        category_tasks = task_params[:catid]
-        
-        #get a list of non-duplicate tasks by filtering id
+        #filter for duplicates        
         not_duplicate = the_tasks.where.not(id: duplicate_tasks)
- 
-        #return with the non-duplicates filtered by catid
-        respond_with not_duplicate.where(category_id: category_tasks)
+        
+        #get the :catid out of the url and in a variable if there, else return all not duplicates 
+        if task_params[:catid]
+          category_tasks = task_params[:catid]
+          respond_with not_duplicate.where(category_id: category_tasks)
+        else
+          respond_with not_duplicate
+        end
         
         
       end
