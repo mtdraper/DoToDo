@@ -26,7 +26,7 @@ DoToDo::Application.routes.draw do
       get 'categories/create/:label/:token', :to => 'categories#create', :as => :category_create    
       
       #task routes
-      get 'tasks/:token', :to => 'tasks#index'  
+      get 'tasks/:catid/:token', :to => 'tasks#index'  
       get 'tasks/:id/complete/:token', :to => 'tasks#complete', :as => :task_complete
       get 'tasks/create/:catid/:label/:token', :to => 'tasks#create', :as => :task_create
     

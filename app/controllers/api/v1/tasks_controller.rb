@@ -20,13 +20,10 @@ module Api
         #filter for duplicates        
         not_duplicate = the_tasks.where.not(id: duplicate_tasks)
         
-        #get the :catid out of the url and in a variable to return if there, else return all not duplicates 
-        if task_params[:catid]
+        #get the :catid out of the url and in a variable to return if there
           category_tasks = task_params[:catid]
-          respond_with not_duplicate.where(category_id: category_tasks)
-        else
-          respond_with not_duplicate
-        end
+          @category = @user.categories.find(category_tasks)
+          respond_with not_duplicate.where(category_id: @category)
         
         
       end
