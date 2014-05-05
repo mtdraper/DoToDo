@@ -14,14 +14,23 @@ module Api
       def logout
         @user.single_access_token = @user.reset_single_access_token
         @user.save
-        respond_with true
+        respond_with validate_token
+      end
+      
+      def validate_token
+        @user = User.find_by_single_access_token(user_params[:token])
+        begin
+          respond_with @user.id
+        rescue
+          respond_with 0
+        end
       end    
            
       private
       
       def user_params
-          params.permit(:format, :token)
-        end  
+        params.permit(:format, :token)
+      end  
       
       def require_http_auth_user
         authenticate_or_request_with_http_basic do |username, password|

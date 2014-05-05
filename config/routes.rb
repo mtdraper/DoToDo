@@ -33,6 +33,7 @@ DoToDo::Application.routes.draw do
       #user routes
       get 'users/login', :to => 'users#login'
       get 'users/logout/:token', :to => 'users#logout'
+      get 'users/validate_token/:token', :to => 'users#validate_token'
     
     
     
