@@ -12,13 +12,17 @@ module Api
       end
       
       def logout
+        #sets and saves a new single access token, forcing a login
         @user.single_access_token = @user.reset_single_access_token
         @user.save
+        #responds by giving a 0 hopefully
         respond_with validate_token
       end
       
       def validate_token
+        #set user object to the queried token user if exists
         @user = User.find_by_single_access_token(user_params[:token])
+        #try catch block because I couldn't figure out a good conditional
         begin
           respond_with @user.id
         rescue

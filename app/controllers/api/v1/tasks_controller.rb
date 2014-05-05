@@ -29,13 +29,18 @@ module Api
       end
       
       def create
+        #set up a filter for the user categories
         sought_category = task_params[:catid]
+        #try to filter to a single category the user has
         @category = @user.categories.find(sought_category)
         #@category = Category.find(sought_category)
+        #create a task
         @task = Task.new
         
+        #set the task variables
         @task.category_id = @category.id
         @task.label = task_params[:label]
+        #try to save, and respond with the object if saved
         if @task.save
           respond_with @task
         else
@@ -57,6 +62,7 @@ module Api
              
       end      
       
+      #errors to catch
       rescue_from ActionController::UnknownFormat do |e|
         render json: {error: e.message}.to_json, status: :not_acceptable
       end

@@ -22,10 +22,13 @@ module Api
       end
       
       def create
+        #new category
         @category = Category.new
+        #fill the needed variables
         @category.label = category_params[:label]
         @category.user_id = @user.id
         
+        #try to save it, and if saved respond with the object
         if @category.save
           respond_with @category
         else
@@ -33,6 +36,7 @@ module Api
         end 
       end
       
+      #errors to catch
       rescue_from ActionController::UnknownFormat do |e|
         render json: {error: e.message}.to_json, status: :not_acceptable
       end  
