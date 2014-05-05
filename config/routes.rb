@@ -21,9 +21,23 @@ DoToDo::Application.routes.draw do
   
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      resources :tasks
-      resources :categories
-      get 'tasks/:id/complete', :to => 'tasks#complete', :as => :api_complete
+      #category routes
+      get 'categories/:token', :to => 'categories#index' 
+      get 'categories/create/:label/:token', :to => 'categories#create', :as => :category_create    
+      
+      #task routes
+      get 'tasks/:token', :to => 'tasks#index'  
+      get 'tasks/:id/complete/:token', :to => 'tasks#complete', :as => :task_complete
+      get 'tasks/create/:catid/:label/:token', :to => 'tasks#create', :as => :task_create
+    
+      #user routes
+      get 'users/login', :to => 'users#login'
+      get 'users/logout/:token', :to => 'users#logout'
+    
+    
+    
+    
+    
     end
   end
   
